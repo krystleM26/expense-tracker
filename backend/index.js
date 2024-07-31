@@ -9,14 +9,13 @@ const expenseRoute = require("./routes/expense")
 dotenv.config();
 const app=express();
 
-//ROUTES
-app.use("/expenses", expenseRoute)
 
 //Middleware- initialized route
-
-
-
 app.use(cors()) // server can any request from any web app
+app.use(express.json())
+
+//ROUTES
+app.use("/expenses", expenseRoute)
 
 
 

@@ -6,6 +6,7 @@ const Expense = require("../models/Expenses");
 // ADD EXPENSE
  
 router.post("/",  async (req, res) => {
+    
   try {
     const newExpense= await Expense(req.body);
     const expense = newExpense.save()
@@ -19,9 +20,10 @@ router.post("/",  async (req, res) => {
 // Get All Expenses
 
 router.get("/", async (req, res) => {
+   
     try{
 
-        const expenses = Expense.find().sort({createdAt:-1}) //latest expense is on top
+        const expenses = await Expense.find().sort({createdAt:-1}) //latest expense is on top
         res.status(200).json(expenses)
     } catch (error){
         res.status(500).json(error)
