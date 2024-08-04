@@ -1,4 +1,4 @@
-
+import { FaTrash, FaEdit } from "react-icons/fa";
 
 function App() {
  
@@ -28,8 +28,67 @@ function App() {
 
           <span className="m-[20px] text-[555] text=[18px]">07/30/2024</span>
           <span className="m-[20px] text-[18px] font-medium">$ 20</span>
-          <div>
 
+
+          <div className="m-[22px]" >
+            <FaTrash className="text-red-500 mb-[5px]  cursor-pointer"/>
+            <FaEdit className="text-[#555] mb-[5px]  cursor-pointer"/>
+          </div>
+        </div>
+
+        <div className="relative flex justify-between items-center w-[80vw] h-[100px] bg-[#f3edeb] my-[20px] py-[10px]">
+          <h2 className="m-[20px] text-[#555] text-[18px] font-medium">Groceries</h2>
+
+
+          <span className="m-[20px] text-[555] text=[18px]">04/30/2024</span>
+          <span className="m-[20px] text-[18px] font-medium">$ 20</span>
+
+
+          <div className="m-[22px]" >
+            <FaTrash className="text-red-500 mb-[5px]  cursor-pointer"/>
+            <FaEdit className="text-[#555] mb-[5px]  cursor-pointer"/>
+          </div>
+        </div>
+
+        <div className="relative flex justify-between items-center w-[80vw] h-[100px] bg-[#f3edeb] my-[20px] py-[10px]">
+          <h2 className="m-[20px] text-[#555] text-[18px] font-medium">Clothes</h2>
+
+
+          <span className="m-[20px] text-[555] text=[18px]">07/30/2024</span>
+          <span className="m-[20px] text-[18px] font-medium">$ 1250</span>
+
+
+          <div className="m-[22px]" >
+            <FaTrash className="text-red-500 mb-[5px]  cursor-pointer"/>
+            <FaEdit className="text-[#555] mb-[5px]  cursor-pointer"/>
+          </div>
+        </div>
+
+        <div className="relative flex justify-between items-center w-[80vw] h-[100px] bg-[#f3edeb] my-[20px] py-[10px]">
+          <h2 className="m-[20px] text-[#555] text-[18px] font-medium">Beauty</h2>
+
+
+          <span className="m-[20px] text-[555] text=[18px]">10/30/2024</span>
+          <span className="m-[20px] text-[18px] font-medium">$ 200</span>
+
+
+          <div className="m-[22px]" >
+            <FaTrash className="text-red-500 mb-[5px]  cursor-pointer"/>
+            <FaEdit className="text-[#555] mb-[5px]  cursor-pointer"/>
+          </div>
+        </div>
+
+        <div className="relative flex justify-between items-center w-[80vw] h-[100px] bg-[#f3edeb] my-[20px] py-[10px]">
+          <h2 className="m-[20px] text-[#555] text-[18px] font-medium">Stuff</h2>
+
+
+          <span className="m-[20px] text-[555] text=[18px]">05/30/2024</span>
+          <span className="m-[20px] text-[18px] font-medium">$ 250</span>
+
+
+          <div className="m-[22px]" >
+            <FaTrash className="text-red-500 mb-[5px]  cursor-pointer"/>
+            <FaEdit className="text-[#555] mb-[5px]  cursor-pointer"/>
           </div>
         </div>
       </div>
