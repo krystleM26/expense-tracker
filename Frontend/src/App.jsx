@@ -20,6 +20,19 @@ function App() {
           />
         </div>
       </div>
+      <div className="flex flex-col">
+
+        <div className="relative flex justify-between items-center w-[80vw] h-[100px] bg-[#f3edeb] my-[20px] py-[10px]">
+          <h2 className="m-[20px] text-[#555] text-[18px] font-medium">Snacks</h2>
+
+
+          <span className="m-[20px] text-[555] text=[18px]">07/30/2024</span>
+          <span className="m-[20px] text-[18px] font-medium">$ 20</span>
+          <div>
+
+          </div>
+        </div>
+      </div>
      </div>
     </div>
   )
