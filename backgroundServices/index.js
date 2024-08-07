@@ -22,5 +22,5 @@ const runSchedule =( ) => {
 }
 runSchedule()
 app.listen(process.env.PORT, () => {
-    console.log(`Server is runnind on port ${process.env.PORT}`)
+    console.log(`Background Services is running on port ${process.env.PORT}`)
 })
