@@ -1,4 +1,4 @@
-import { FaTrash, FaEdit } from "react-icons/fa";
+import { FaTrash, FaEdit, FaWindowClose } from "react-icons/fa";
 
 function App() {
  
@@ -7,11 +7,16 @@ function App() {
     <div>
      <div className="flex flex-col justify-center items-center mt-[3%] w-[80%] mr-[5%] ml-[5%]">
       <h1 className="text-2xl font-medium text-[#444]">Expense Tracker</h1>
-      <div className="flex items-center justify-between mt-5 w-[100%]">
+      <div className=" relative flex items-center justify-between mt-5 w-[100%]">
         <div className="relative flex items-center justify-between w-[300px]">
 
           <button className="bg-[grey] p-[10px] border-none outline-none cursor-pointer text-[#fff] text-medium">Add Expense</button>
           <button className="bg-blue-400 p-[10px] border-none outline-none cursor-pointer text-[#fff] text-medium">Expense Report</button>
+        </div>
+        <div className="absolute z-[999] flex flex-col p-[10px] top-[20px] left-0 h-[500px] w-[500px] bg-white shadow-x;">
+          <FaWindowClose className="flex justify-end items-end text-2xl text-red-500 cursor-pointer"/>
+          <label htmlFor="" className="mt-[10px] font-semibold text-[18px]" />
+          <input type="text"  className="border-[#444] p-[10px]"/>
         </div>
         <div>
           <input type="text"
@@ -19,6 +24,10 @@ function App() {
           className="p-[10px] w-[150px] border-2 border-[grey] border-solid" 
           />
         </div>
+
+       
+
+
       </div>
       <div className="flex flex-col">
 
