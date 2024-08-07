@@ -15,9 +15,17 @@ function App() {
         </div>
         <div className="absolute z-[999] flex flex-col p-[10px] top-[20px] left-0 h-[500px] w-[500px] bg-white shadow-x;">
           <FaWindowClose className="flex justify-end items-end text-2xl text-red-500 cursor-pointer"/>
-          <label htmlFor="" className="mt-[10px] font-semibold text-[18px]" />
-          <input type="text"  className="border-[#444] p-[10px]"/>
+          <label htmlFor=""className="mt-[10px] font-semibold text-[18px]">Expense Name</label>
+          <input type="text" placeholder="Snacks" className="outline-none border-2 border-[#555] border-solid p-[10px] " />
+          <label htmlFor=""  className="mt-[10px] font-semibold text-[18px]">Expense Date</label>
+          <input type="date" placeholder="01/01/2024" className="outline-none border-2 border-[#555] border-solid p-[10px] " />
+          <label htmlFor="" className="mt-[10px] font-semibold text-[18px]">Expense Amount</label>
+          <input type="Number"placeholder="250" className="outline-none border-2 border-[#555] border-solid p-[10px] " />
+
+          <button className="bg-[#af8978] text-white p-[10px] border-none cursor-pointer my-[10px]">Add Expense</button>
         </div>
+
+
         <div>
           <input type="text"
           placeholder="Search"
