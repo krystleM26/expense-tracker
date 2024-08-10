@@ -10,7 +10,7 @@ const expenseEmail = async () => {
         (acc, expense) => acc + expense.value, 0
     )
 
-    if(totalExpense > 10000){
+    if(totalExpense > 3000){
         let messageOption = {
             from:process.env.Email,
             to:process.env.EMAIL,
