@@ -16,19 +16,24 @@ let configurations = {
     requireTLS:true,
     auth:{
         user:process.env.EMAIL,
-        password: process.env.PASSWORD
+        pass: process.env.PASSWORD
     }
 }
 
 const sendMail= async(messageOption) => {
-const transporter = await createTransporter(configurations)
-await transporter.verify();
-await transporter.sendMail(messageOption, (error, info) => {
-    if(error){
-        console.log(error);
+    try {
+        const transporter = await createTransporter(configurations)
+        await transporter.verify();
+
+        const info = await transporter.sendMail(messageOption)
+        console.log('Email Sent' + info.response);
+    } catch (error) {
+        console.log(error)
     }
-    console.log(info.response);
-})
+
+
 }
+   
+
 
 module.exports=sendMail;
