@@ -4,31 +4,37 @@ const { create } = require("domain");
 
 
 dotenv.config()
-function createTransporter(config) {
-    const transporter = nodemailer.createTransport(config);
-    return transporter;
-}
 
-let configurations = {
-    service:"gmail",
-    host:"smtp.gmail.com",
-    port:587,
-    requireTLS:true,
-    auth:{
-        user:process.env.EMAIL,
-        password: process.env.PASSWORD
-    }
-}
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const REDIRECT_URI = process.env.REDIRECT_URI;
+const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 
-const sendMail= async(messageOption) => {
-const transporter = await createTransporter(configurations)
-await transporter.verify();
-await transporter.sendMail(messageOption, (error, info) => {
-    if(error){
-        console.log(error);
+const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
+
+
+
+async function sendMail(messageOption) {
+    try {
+        const accessToken = await oAuth2Client.getAccessToken()
+        const transporter = nodemailer.createTransport({
+            service:'gmail',
+            auth: {
+                type:'0Auth2',
+                user: process.env.EMAIL,
+                clientID: CLIENT_ID,
+                clientSecret: CLIENT_SECRET,
+                refreshToken: REFRESH_TOKEN,
+                accessToken: accessToken.token,
+
+            }
+        })
+        const result = await transporter.sendMail(messageOption);
+        console.log(result)
+    } catch (error) {
+        console.log("Error sending email", error)
     }
-    console.log(info.response);
-})
-}
+} 
 
 module.exports=sendMail;
