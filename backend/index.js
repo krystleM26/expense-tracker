@@ -29,5 +29,5 @@ mongoose.connect(process.env.DB_CONNECTION).then(() => {
 })
 
 app.listen(process.env.PORT, () => {
-    console.log(`server is running on PORT ${process.env.PORT}`)
+    console.log(`Backend is running on PORT ${process.env.PORT}`)
 })
