@@ -20,6 +20,7 @@ function App() {
   const [updatedAmount, setUpdatedAmount] = useState("")
   const [updatedDate, setUpdatedDate] = useState("")
   const [expenses, setExpenses] = useState([])
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleAddExpense = () => {
     setShowAddExpense(!showAddExpense)
@@ -29,8 +30,9 @@ function App() {
     setShowReport(!showReport)
   }
 
-  const handleShowEdit = () => {
-    setEdit(!showEdit)
+  const handleShowEdit = (id) => {
+    setEdit(!showEdit);
+    setUpdatedID(id)
   }
 
   const handleExpense = async () => {
@@ -48,6 +50,23 @@ function App() {
      catch (error) {
       console.log(error)
      }
+  }
+
+  const handleUpdateExpense = async () => {
+    if(updatedDate) {
+      try {
+        await publicRequest.put(`/expenses/${updatedId}`, {
+          value: updatedAmount,
+          label: updatedLabel,
+          date: updatedDate,
+
+        })
+        window.location.reload()
+      }catch (error){
+        console.log(error)
+      }
+    }
+
   }
 
 
@@ -73,8 +92,15 @@ function App() {
       console.log(error)
     }
   }
- 
 
+  const filteredExpenses = expenses.filter(
+    (expense) =>
+      expense.label.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      expense.date.includes(searchQuery) ||
+      expense.value.toString().includes(searchQuery)
+  );
+ 
+  const totalExpenses = expenses.reduce((acc, curr) => acc + curr.value, 0);
   return (
     <div>
      <div className="flex flex-col justify-center items-center mt-[3%] w-[80%] mr-[5%] ml-[5%]">
@@ -84,6 +110,9 @@ function App() {
 
           <button className="bg-[grey] p-[10px] border-none outline-none cursor-pointer text-[#fff] text-medium" onClick={handleAddExpense}>Add Expense</button>
           <button className="bg-blue-400 p-[10px] border-none outline-none cursor-pointer text-[#fff] text-medium" onClick={handleShowReport}>Expense Report</button>
+        </div>
+
+        <input type="text" placeholder="Search Expenses" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="border p-[10px] w-[300px] ml-auto" />
         </div>
         
         {showAddExpense && (
@@ -126,7 +155,7 @@ function App() {
                 }
                 ]}
               />
-
+              <h2 className="mt-[20px] text-xl font-medium text-[#444]">Total Expenses: ${totalExpenses.toFixed(2)}</h2>
          
           </div>}
 
@@ -138,10 +167,10 @@ function App() {
 
    
 
-       {expenses.map((item, index) => 
+       {filteredExpenses.map((item, index) => 
        
-       <>
        
+       <div key={index}>
        <div className="relative flex justify-between items-center w-[80vw] h-[100px] bg-[#f3edeb] my-[20px] py-[10px]" key={index}>
           <h2 className="m-[20px] text-[#555] text-[18px] font-medium">{item.label}</h2>
 
@@ -154,10 +183,10 @@ function App() {
             <FaTrash className="text-red-500 mb-[5px]  cursor-pointer" onClick={() => {
               handleDelete(item._id)
             }}/>
-            <FaEdit className="text-[#555] mb-[5px]  cursor-pointer" onClick={handleShowEdit}/>
+            <FaEdit className="text-[#555] mb-[5px]  cursor-pointer" onClick={() => handleShowEdit(item._id)}/>
           </div>
         </div>
-        </>
+        </div>
        )}
 
       
@@ -181,10 +210,10 @@ function App() {
               onChange={(e) =>  setUpdatedAmount(e.target.value)}
           />
 
-          <button className="bg-[#af8978] text-white p-[10px] border-none cursor-pointer my-[10px] text-medium">Update Expense</button>
+          <button className="bg-[#af8978] text-white p-[10px] border-none cursor-pointer my-[10px] text-medium" onClick={handleUpdateExpense}>Update Expense</button>
         </div>}
      </div>
-    </div>
+    
   )
 }
 
