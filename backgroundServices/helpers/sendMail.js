@@ -21,9 +21,9 @@ async function sendMail(messageOption) {
         const transporter = nodemailer.createTransport({
             service:'gmail',
             auth: {
-                type:'0Auth2',
+                type:'OAuth2',
                 user: process.env.EMAIL,
-                clientID: CLIENT_ID,
+                clientId: CLIENT_ID,
                 clientSecret: CLIENT_SECRET,
                 refreshToken: REFRESH_TOKEN,
                 accessToken: accessToken.token,
@@ -33,7 +33,8 @@ async function sendMail(messageOption) {
         const result = await transporter.sendMail(messageOption);
         console.log(result)
     } catch (error) {
-        console.log("Error sending email", error)
+        console.log("Error sending email", error);
+        throw error;
     }
 } 
 

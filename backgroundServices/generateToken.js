@@ -20,7 +20,7 @@ console.log("Authorize this app by visiting this url:", authUrl);
 
 const rl = readline.createInterface({
     input: process.stdin,
-    output: process.stdout,
+    output: process.stdout, 
   });
   
   rl.question("Enter the code from that page here: ", async (code) => {
